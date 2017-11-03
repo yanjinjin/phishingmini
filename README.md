@@ -5,7 +5,10 @@ email:phishfeeds@yahoo.com
 #apache+wsgi+webpy
 yum install apache2
 yum install mod_wsgi
+yum install python-pip
 pip install pythonwhois
+pip install lxml
+yum install scipy
 #webpy 
 see http://webpy.org/
 #apache conf

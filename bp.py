@@ -4,6 +4,8 @@ from pybrain.supervised.trainers import BackpropTrainer
 from pybrain.structure import TanhLayer
 from pybrain.tools.customxml import NetworkWriter
 from pybrain.tools.customxml import NetworkReader
+import os
+curdir = os.path.dirname(__file__)
 
 """columns = ['having_IP_Address',
 'URL_Length',
@@ -42,7 +44,7 @@ def build_bp():
     global net
     net = buildNetwork(30, 2, 1, bias=True, hiddenclass=TanhLayer)
     ds = SupervisedDataSet(30, 1)
-    fp=open("./data.csv", "r");
+    fp=open(os.path.join(curdir,"./data.csv"), "r");
     alllines=fp.readlines();
     for eachline in alllines:
         data = eachline.rstrip('\n').split(',')
@@ -53,15 +55,15 @@ def build_bp():
         target = data_int[len(data_int)-1:len(data_int)]
         ds.addSample(input,target)
     fp.close()
-    print len(ds)
-    for inpt, target in ds:
-        print inpt, target
+    #print len(ds)
+    #for inpt, target in ds:
+        #print inpt, target
 #    trainer = BackpropTrainer(net, ds)
 #    trainer.trainUntilConvergence(maxEpochs=10000)
-#    NetworkWriter.writeToFile(net, './bpstudy.xml')
-    net = NetworkReader.readFrom('./bpstudy.xml')
+#    NetworkWriter.writeToFile(net, os.path.join(curdir,'./bpstudy.xml'))
+    net = NetworkReader.readFrom(os.path.join(curdir,'./bpstudy.xml'))
     #test
-    fp=open("./data.csv", "r");
+    fp=open(os.path.join(curdir,"./data.csv"), "r");
     alllines=fp.readlines();
     for eachline in alllines:
         data = eachline.rstrip('\n').split(',')
@@ -70,7 +72,7 @@ def build_bp():
             data_int.append(int(i))
         input = data_int[0:len(data_int)-1]
         target = data_int[len(data_int)-1:len(data_int)]
-        print net.activate(input)
+        #print net.activate(input)
     fp.close()
 
 def activate_bp(input):

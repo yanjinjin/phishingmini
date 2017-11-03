@@ -19,6 +19,9 @@ from time import time
 from datetime import datetime
 from threading import Thread
 import pythonwhois,time
+import os
+curdir = os.path.dirname(__file__)
+
 '''
 # used for debugging code
 import sys,logging,optparse
@@ -49,10 +52,10 @@ urlpattern = '(?:http.*://)?(?P<domain>[^:/ ]+).?(?P<port>[0-9]*).*'
 
 #Global white list
 whitelistdomain= []
-f = open('./white.txt', 'r')
+f = open(os.path.join(curdir,'./white.txt'), 'r')
 for line in f.readlines():
     whitelistdomain.append(line.strip('\n'))
-print(whitelistdomain)
+#print(whitelistdomain)
 #function for find short version url without http:// or https://
 def shorturl(wholeurl):
 	pos = wholeurl.find("//")+1

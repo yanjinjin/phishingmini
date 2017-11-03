@@ -34,4 +34,3 @@ logger = get_logger(os.path.join(curdir,'phishing.log') , 5)
 
 def plog(mess):
     logger.info(mess)
-

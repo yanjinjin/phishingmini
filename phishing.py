@@ -45,10 +45,10 @@ class check:
 	result = urlfeatureextractor(url)
 	if result == []:
             return render.check(url , score_not_phishing , score_phishing , score_suspect)
-	plog(result)
+	#plog(result)
 	result_bp = activate_bp(result)
 	result_bp_float = float('%.2f' % result_bp[0])
-	plog(result_bp_float)
+	#plog(result_bp_float)
 	if result_bp_float > 0:
 	   score_phishing = 100*result_bp_float
 	   if score_phishing > 100:
