@@ -56,6 +56,12 @@ f = open(os.path.join(curdir,'./white.txt'), 'r')
 for line in f.readlines():
     whitelistdomain.append(line.strip('\n'))
 #print(whitelistdomain)
+#Global black list
+blacklistdomain= []
+f = open(os.path.join(curdir,'./black.txt'), 'r')
+for line in f.readlines():
+    blacklistdomain.append(line.strip('\n'))
+#print(blacklistdomain)
 #function for find short version url without http:// or https://
 def shorturl(wholeurl):
 	pos = wholeurl.find("//")+1
@@ -272,32 +278,21 @@ def urlfeatureextractor(wholeurl):
 	#Drules = comp('./domain.yar')
         
 	wholeurl = wholeurl.lower()
-        headers = {"Accept-encoding": "gzip","Accept":"text/html","Referer":"http://www.sijitao.net/","User-Agent": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36"}
 	if wholeurl.startswith("http://") or wholeurl.startswith("https://"):# This is how to deal with url with out http title
 		surl = shorturl(wholeurl)
-		try:
-			request = urllib2.Request(wholeurl, None, headers)
-			page = urllib2.urlopen(request,timeout=10)
-			html = get_page_content(page)
-		except Exception as e:
-			print (e)
-			page = None
-			html = ''
-			return []
-		#hmark = True
 	else:
 		surl = wholeurl
 		wholeurl = "http://"+wholeurl
-		try:
-			request = urllib2.Request(wholeurl, None, headers)
-			page = urllib2.urlopen(request,timeout=10)
-			html = get_page_content(page)
-		except Exception as e:
-			print(e)
-			page = None
-			html = ''
-			return []
-		#hmark = False
+	request = urllib2.Request(wholeurl)
+        request.add_header("User-Agent", "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36")
+	try:
+            page = urllib2.urlopen(request,timeout=10)
+            html = get_page_content(page)
+        except Exception as e:
+            print (e)
+            page = None
+            html = ''
+            return []
 	length=len(surl)
 	domain,portnum = domain_port_num(wholeurl)
 	#if hmark: #hmark is used for which url the input is. if begin with http(s):// mathc Trule, else Frule
@@ -325,17 +320,17 @@ def urlfeatureextractor(wholeurl):
 		features[7] = -1 if wholeurl[:8] == "https://" else 1#feature 8
 
 		
-		features[9] =  -1 #favicondomain(wholeurl,domain,page))#feature 10 favicon domain
+		features[9] = -1 #favicondomain(wholeurl,domain,page)#feature 10 favicon domain
 		#features.append(1 if "pat" in matches else -1) # have @
 		features[10] = -1 if portnum == 80 else 1#feature 11
 		features[11] = 1 if wholeurl.find('https')>6 else -1 #feature 12
-		features[12] = -1 if domain in whitelistdomain else 1 # domain in whitelist
+		features[12] = -1 if domain in whitelistdomain else 0 # domain in whitelist
 		#matches = None
 		#domainmatches = None
 		
 		
-		surl = None
-		wholeurl = None
+		#surl = None
+		#wholeurl = None
 		#URL section end
 		if html:
 			#HTML section Start
@@ -377,6 +372,7 @@ def urlfeatureextractor(wholeurl):
 				url = splitURLSection[-2] + '.' + splitURLSection[-1]
 			w = pythonwhois.get_whois(url)
 		except Exception as e:
+			print(e)
 			w = None
 		if w and 'status' in w:
 			today = datetime.today()
@@ -392,16 +388,13 @@ def urlfeatureextractor(wholeurl):
 		today = None
 		w = None
 		#DNS section over
-
-
-		
 		
 		#these features are too expensive to process
-		features[25] = -1
-		features[26] = 0
-		features[27] = 1
-		features[28] = -1
-		features[29] = 0
+		features[25] = features[12]#Website Traffic
+		features[26] = features[12]#PageRank
+		features[27] = features[12]#Google Index
+		features[28] = features[12]#Number of Links Pointing to Page
+		features[29] = 1 if wholeurl in blacklistdomain else -1#Statistical-Reports Based Feature phishtank 
 		
 		#print domainmat
 		print(features)
