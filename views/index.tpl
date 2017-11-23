@@ -1,5 +1,5 @@
 % rebase('base.tpl')
-%if browser == None:
+%if browser == None or browser == '':
 	<script type="text/javascript"> 
 	var system ={}; 
 		var p = navigator.platform;      
