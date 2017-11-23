@@ -1,6 +1,5 @@
-$def with (browser)
-
-$if browser == None:
+% rebase('base.tpl')
+%if browser == None:
 	<script type="text/javascript"> 
 	var system ={}; 
 		var p = navigator.platform;      
@@ -8,12 +7,12 @@ $if browser == None:
 		system.mac = p.indexOf("Mac") == 0; 
 		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);    
 		if(system.win||system.mac||system.xll){//pc
-			window.location.href="/index?browser=pc"; 
+			window.location.href="/?browser=pc"; 
 		}else{  
-			window.location.href="/index?browser=mobile"; 
+			window.location.href="/?browser=mobile"; 
 		}
 	</script>
-$else:
+%else:
 	<div class="row">
 		<div class="col-lg-12">
 		<form class="form-search" id="myform" method="post" action="check">
@@ -27,7 +26,7 @@ $else:
 				<p>本系统使用神经网络算法实现钓鱼网站的检测，您可以在本系统检测钓鱼，诈骗等恶意网站，如果您遇到可疑网站，可把网址输入以上方框进行检测，避免造成您的损失！</p>	
 				<p></p>
 				<img alt="" src="/static/img/logo.jpg" />
-				$if browser == "pc":
+				%if browser == "pc":
 					<div class="bdsharebuttonbox"><a href="#" class="bds_more" >分享到：</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_weixin" title="分享到微信">关注微信公众号：</a><img alt="" src="/static/img/weixin.jpg" height="100" width="100"/>
 					</div>
 					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
@@ -36,3 +35,4 @@ $else:
 		</div>
 		</div>
 	</div>
+%end
