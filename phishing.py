@@ -30,6 +30,11 @@ def index():
     print browser
     return template('index', browser=browser)
 
+@route('/index',method = 'GET')
+def index2():
+    browser = request.query.browser
+    return template('index',browser = browser)
+
 @route('/check',method = 'POST')
 def index_check():
     url = request.POST.get('url')
@@ -43,7 +48,7 @@ def index_check():
     result = urlfeatureextractor(url)
     if result == []:
         return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)
-    #plog(result)
+    plog(result)
     result_bp = activate_bp(result)
     result_bp_float = float('%.2f' % result_bp[0])
     print result_bp_float
