@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="sogou_site_verification" content="dX1UeTN9kJ"/>
 	<meta name="baidu-site-verification" content="L0fZ4GXq6Z" />
+	<meta name="baidu-site-verification" content="RKSsa9hjY0" />
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Bootstrap -->
