@@ -296,9 +296,10 @@ def urlfeatureextractor(wholeurl):
             return []'''
 	headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0'}
 	try:
-	    page = requests.get(wholeurl,headers=headers,timeout=10)
+	    page = requests.get(wholeurl,headers=headers,timeout=10,verify=False)
 	    html = page.text
 	except Exception as e:
+	    print (e)
 	    page = None
             html = ''
             return []
