@@ -11,6 +11,7 @@ from numpy import exp,loadtxt, asarray, dot
 #from numpy import append as npappend
 from lxml.html import parse as lparse
 import urllib2
+import requests
 import gzip
 import StringIO
 from urlparse import urlparse
@@ -77,7 +78,7 @@ def urlredirect(wholeurl,page):
 	try:
 		#if not wholeurl.startswith("http://") or wholeurl.startswith("https://"):
 		#	wholeurl = "http://" + wholeurl
-		return -1 if (page.geturl()) == wholeurl else 1
+		return -1 if (page.url) == wholeurl else 1
 	except Exception as e:
 		return -1# this should not be the case if the whole url is invaid	
 #feature 9 use whois call to get dns
@@ -283,7 +284,7 @@ def urlfeatureextractor(wholeurl):
 	else:
 		surl = wholeurl
 		wholeurl = "http://"+wholeurl
-	request = urllib2.Request(wholeurl)
+	'''request = urllib2.Request(wholeurl)
         request.add_header("User-Agent", "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36")
 	try:
             page = urllib2.urlopen(request,timeout=10)
@@ -292,7 +293,16 @@ def urlfeatureextractor(wholeurl):
             print (e)
             page = None
             html = ''
+            return []'''
+	headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0'}
+	try:
+	    page = requests.get(wholeurl,headers=headers,timeout=10)
+	    html = page.text
+	except Exception as e:
+	    page = None
+            html = ''
             return []
+
 	length=len(surl)
 	domain,portnum = domain_port_num(wholeurl)
 	#if hmark: #hmark is used for which url the input is. if begin with http(s):// mathc Trule, else Frule
