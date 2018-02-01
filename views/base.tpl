@@ -6,6 +6,7 @@
 	<meta name="sogou_site_verification" content="dX1UeTN9kJ"/>
 	<meta name="baidu-site-verification" content="L0fZ4GXq6Z" />
 	<meta name="baidu-site-verification" content="RKSsa9hjY0" />
+	<meta name="baidu_union_verify" content="b5f6be0c726b75265f0048520a574076">
 	<meta name="msvalidate.01" content="D533F8900A287FB34C7B2D960F88FCEE" />
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
