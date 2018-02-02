@@ -23,7 +23,7 @@
 		<div class="carousel slide" id="carousel-55268">
 			<div class="carousel-inner">
 				<div class="item active">
-				<p>本系统基于人工智能深度学习(BP神经网络)实现钓鱼网站的检测，您可以在本系统检测钓鱼，诈骗等恶意网站，如果您遇到可疑网站，可把网址输入以上方框进行检测，避免造成您的损失！</p>	
+				<p>本系统基于人工智能深度学习(BP神经网络)实现在线钓鱼网站检测(查询)，您可以在本系统检测钓鱼，诈骗等恶意网站，如果您遇到可疑网站，可把网址输入以上方框进行检测，避免造成您的损失！</p>	
 				<p></p>
 				<img alt="" src="/static/img/logo.jpg" />
 				%if browser == "pc":
