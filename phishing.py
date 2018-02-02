@@ -35,6 +35,10 @@ def index2():
     browser = request.query.browser
     return template('index',browser = browser)
 
+@route('/help',method = 'GET')
+def help():
+    return template('help')
+
 @route('/check',method = 'POST')
 def index_check():
     url = request.POST.get('url')
