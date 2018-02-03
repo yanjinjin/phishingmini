@@ -73,7 +73,7 @@ def index_check():
     return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)	
 
 @route('/weixin',method = 'GET')
-def weixin_get(self):
+def weixin_get():
     signature=request.GET.get('signature')
     timestamp=request.GET.get('timestamp')
     nonce=request.GET.get('nonce')
@@ -83,7 +83,7 @@ def weixin_get(self):
     re = wh.get(signature,timestamp,nonce,echostr)
     return re
 @route('/weixin',method = 'POST')
-def weixin_post(self):
+def weixin_post():
     body = request.body
     plog(body)
     wh = weixin_handle()
