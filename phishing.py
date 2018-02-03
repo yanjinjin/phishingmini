@@ -7,6 +7,7 @@ from bottle import route,request,template,view,run,Bottle,static_file,get, post,
 from plog import *
 from features import *
 from bp import *
+from weixin import *
 
 @route('/static/js/<path>')  
 def js(path):  
@@ -70,6 +71,26 @@ def index_check():
         score_suspect = 100 - score_not_phishing
     print score_not_phishing,score_phishing,score_suspect
     return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)	
+
+@route('/weixin',method = 'GET')
+def weixin_get(self):
+    search = web.input()
+    signature=search.get('signature')
+    timestamp=search.get('timestamp')
+    nonce=search.get('nonce')
+    echostr=search.get('echostr')
+    print signature,timestamp,nonce,echostr
+    wh = weixin_handle()
+    re = wh.get(signature,timestamp,nonce,echostr)
+    return re
+@route('/weixin',method = 'POST')
+def weixin_post(self):
+    body = web.data()
+    plog(body)
+    wh = weixin_handle()
+    re = wh.post(body)
+    return re
+
 build_bp()
 #run(host='0.0.0.0',port=80)
 # Change working directory so relative paths (and template lookup) work again
