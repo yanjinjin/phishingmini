@@ -74,18 +74,17 @@ def index_check():
 
 @route('/weixin',method = 'GET')
 def weixin_get(self):
-    search = web.input()
-    signature=search.get('signature')
-    timestamp=search.get('timestamp')
-    nonce=search.get('nonce')
-    echostr=search.get('echostr')
+    signature=request.GET.get('signature')
+    timestamp=request.GET.get('timestamp')
+    nonce=request.GET.get('nonce')
+    echostr=request.GET.get('echostr')
     print signature,timestamp,nonce,echostr
     wh = weixin_handle()
     re = wh.get(signature,timestamp,nonce,echostr)
     return re
 @route('/weixin',method = 'POST')
 def weixin_post(self):
-    body = web.data()
+    body = request.body
     plog(body)
     wh = weixin_handle()
     re = wh.post(body)
