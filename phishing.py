@@ -84,7 +84,7 @@ def weixin_get():
     return re
 @route('/weixin',method = 'POST')
 def weixin_post():
-    body = request.body
+    body = request.body.read()
     plog(body)
     wh = weixin_handle()
     re = wh.post(body)
