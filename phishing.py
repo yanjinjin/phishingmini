@@ -48,10 +48,10 @@ def index_check():
     score_suspect = 0 # 0
     if url == "" or url == None:
         return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)
-    if not url.startswith("http"):
-        return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)
     plog(url)
     url = url.strip()
+    if not url.startswith("http"):
+        return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)
     result = urlfeatureextractor(url)
     if result == []:
         return template('check',url=url , score_not_phishing=score_not_phishing , score_phishing=score_phishing , score_suspect=score_suspect)
