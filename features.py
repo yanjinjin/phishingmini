@@ -337,7 +337,10 @@ def urlfeatureextractor(wholeurl):
 		features[11] = 1 if wholeurl.find('https')>6 else -1 #feature 12
 	        features[12] = 0	
 		for w in whitelistdomain:
-		    features[12] = -1 if w in domain else 0 # domain in whitelist
+		    if w in domain:
+		        features[12] = -1
+		    else:
+			0 # domain in whitelist
 		#matches = None
 		#domainmatches = None
 		

@@ -34,6 +34,12 @@
 				<div class="col-lg-12">
 					<p><br><br></p><p><br><br></p>
 				        {{!base}}
+				<script type="text/javascript">
+    /*20:6 创建于 2018/2/7*/
+    var cpro_id = "u3203659";
+</script>
+<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/cm.js"></script>
+
 				</div>
 				</div>
 			</div>	
