@@ -335,7 +335,9 @@ def urlfeatureextractor(wholeurl):
 		#features.append(1 if "pat" in matches else -1) # have @
 		features[10] = -1 if portnum == 80 else 1#feature 11
 		features[11] = 1 if wholeurl.find('https')>6 else -1 #feature 12
-		features[12] = -1 if domain in whitelistdomain else 0 # domain in whitelist
+	        features[12] = 0	
+		for w in whitelistdomain:
+		    features[12] = -1 if w in domain else 0 # domain in whitelist
 		#matches = None
 		#domainmatches = None
 		
