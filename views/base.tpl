@@ -3,6 +3,8 @@
     <head>
         <title>钓鱼网站智能检测系统</title>
 	<meta charset="utf-8">
+	<meta name="keywords" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失">
+	<meta name="description" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失">
 	<meta name="sogou_site_verification" content="dX1UeTN9kJ"/>
 	<meta name="baidu-site-verification" content="L0fZ4GXq6Z" />
 	<meta name="baidu-site-verification" content="RKSsa9hjY0" />
