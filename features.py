@@ -338,9 +338,8 @@ def urlfeatureextractor(wholeurl):
 	        features[12] = 0	
 		for w in whitelistdomain:
 		    if w in domain:
-		        features[12] = -1
-		    else:
-			0 # domain in whitelist
+		        features[12] = -1 # domain in whitelist
+			break
 		#matches = None
 		#domainmatches = None
 		

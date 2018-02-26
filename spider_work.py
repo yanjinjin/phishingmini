@@ -1,3 +1,4 @@
+from getdomainbyurl import *
 from spider import *
 from spider_proxy import *
 import os
@@ -77,3 +78,22 @@ class WhiteSpider:
         s = AlexaGlobalSpider()
         result=s.parse_data()
         return result
+
+fw = open('white.txt', 'w')
+d = SLD()
+ws = WhiteSpider()
+result = ws.get_all_result()
+for i in result:
+    print "%s\n////////////"%i
+    host = d.get_second_level_domain(i)
+    print host
+    if host!="" and host!=None:
+	fw.write(host+'\n')
+
+
+fb = open('black.txt', 'w')
+bs = BlackSpider()
+result = bs.get_all_result()
+for i in result:
+    print "%s\n////////////"%i
+    fb.write(i+'\n')
