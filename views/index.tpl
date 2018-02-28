@@ -17,7 +17,7 @@
 		<div class="col-lg-12">
 		<form class="form-search" id="myform" method="post" action="check">
 			<input class="input-medium search-query" type="url" id= "url" name="url" placeholder="http(s)://" aria-describedby="basic-addon" maxlength="256" required/> 
-			<button type="submit" class="btn btn-default" name="btn" value="check"><span class="glyphicon glyphicon-search">检测</span></button>
+			<button class="btn btn-default" id="btn" name="btn" value="check" data-loading-text="检测中..."><span class="glyphicon glyphicon-search">检测</span></button>
 		</form>
 		<p></p>
 		<div class="carousel slide" id="carousel-55268">
@@ -36,4 +36,15 @@
 		</div>
 		</div>
 	</div>
+	<script>
+    	$(function() {
+        $("#btn").click(function(){
+            $(this).button('loading').delay(100).queue(function() {
+            //$(this).button('reset');
+            //$(this).dequeue(); 
+	    $(this).button('complete');
+            });
+        });
+    	});  
+	</script>
 %end
