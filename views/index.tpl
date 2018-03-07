@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 		<form class="form-search" id="myform" method="post" action="check">
-			<input class="input-medium search-query" type="url" id= "url" name="url" placeholder="http(s)://" aria-describedby="basic-addon" maxlength="256" required/> 
+			<input class="input-medium search-query" type="url" id= "url" name="url" placeholder="http(s)://" aria-describedby="basic-addon" maxlength="512" required/> 
 			<button class="btn btn-default" id="btn" name="btn" value="check" data-loading-text="检测中..."><span class="glyphicon glyphicon-search">检测</span></button>
 		</form>
 		<p></p>

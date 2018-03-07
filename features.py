@@ -51,18 +51,6 @@ ippattern = '(?:http.*://)?(?P<ip>([0-9]+)(?:\.[0-9]+){3}).*'
 #This regex is for domain and port pattern
 urlpattern = '(?:http.*://)?(?P<domain>[^:/ ]+).?(?P<port>[0-9]*).*'
 
-#Global white list
-whitelistdomain= []
-f = open(os.path.join(curdir,'./white.txt'), 'r')
-for line in f.readlines():
-    whitelistdomain.append(line.strip('\n'))
-#print(whitelistdomain)
-#Global black list
-blacklistdomain= []
-f = open(os.path.join(curdir,'./black.txt'), 'r')
-for line in f.readlines():
-    blacklistdomain.append(line.strip('\n'))
-#print(blacklistdomain)
 #function for find short version url without http:// or https://
 def shorturl(wholeurl):
 	pos = wholeurl.find("//")+1
@@ -278,7 +266,7 @@ def urlfeatureextractor(wholeurl):
 	#Frules = comp('./FURL.yar')
 	#Drules = comp('./domain.yar')
         
-	wholeurl = wholeurl.lower()
+	#wholeurl = wholeurl.lower()
 	if wholeurl.startswith("http://") or wholeurl.startswith("https://"):# This is how to deal with url with out http title
 		surl = shorturl(wholeurl)
 	else:
@@ -335,11 +323,13 @@ def urlfeatureextractor(wholeurl):
 		#features.append(1 if "pat" in matches else -1) # have @
 		features[10] = -1 if portnum == 80 else 1#feature 11
 		features[11] = 1 if wholeurl.find('https')>6 else -1 #feature 12
-	        features[12] = 0	
-		for w in whitelistdomain:
-		    if w == domain:
+	        features[12] = 0
+		fw = open(os.path.join(curdir,'./white.txt'), 'r')
+		for line in fw.readlines():
+		    if line.strip('\n') == domain:
 		        features[12] = -1 # domain in whitelist
 			break
+		fw.close()
 		#matches = None
 		#domainmatches = None
 		
@@ -409,8 +399,13 @@ def urlfeatureextractor(wholeurl):
 		features[26] = features[12]#PageRank
 		features[27] = features[12]#Google Index
 		features[28] = features[12]#Number of Links Pointing to Page
-		features[29] = 1 if wholeurl in blacklistdomain else -1#Statistical-Reports Based Feature phishtank 
-		
+		features[29] = 0#Statistical-Reports Based Feature phishtank
+		fb = open(os.path.join(curdir,'./black.txt'), 'r')
+                for line in fb.readlines():
+                    if line.strip('\n') == wholeurl:
+                        features[29] = 1 # domain in blacklist
+                        break
+		fb.close()
 		#print domainmat
 		print(features)
 	except Exception as e:
