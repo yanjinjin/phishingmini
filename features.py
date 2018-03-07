@@ -339,7 +339,9 @@ def urlfeatureextractor(wholeurl):
 		#URL section end
 		if html:
 			#HTML section Start
-			#print(html)	
+			#print(html)
+			if features[12] == 0:
+                            features[12] = 1 if "<form" in html else 0 	
 			features[13] = anchorURL(html) #feature 14 1.2.2. anchor
 			features[14] = MSLtags(html, domain) # links in meta, script and link tags
 			formhandle = findall('<form.*(?!>)action="([^ >"]*)".*>',html)
@@ -347,7 +349,7 @@ def urlfeatureextractor(wholeurl):
 			features[16] = Formmail(formhandle)
 			formhandle = None
 			features[2] =  urlredirect(wholeurl,page)# feature 3 URL redirection
-			features[18] = -1  #1.3.1. Website Forwarding this feature is kind of duplicate with feature 3
+			features[18] = features[12]  #1.3.1. Website Forwarding this feature is kind of duplicate with feature 3
 			features[19] = onmouseover(html)#features 20: onmouseover
 			features[20] = disableightclick(html) #features 21: whether has "event.button==2" in source code
 			features[21] = 1 if "window.open(" in html else -1 #features 22: whether has popup window
@@ -384,7 +386,7 @@ def urlfeatureextractor(wholeurl):
 			features[8] = f9whois(w,today)#feature 9, use whois system call to decide reg length
 			features[17] = identity(w,splitURLSection[-2])#feature 18, whether url in the name
 			features[23] = f24whois(w,today) #feature 24, creation date more than 6 months. 
-			features[24] = -1 # have DNS record so -1
+			features[24] = features[12] # have DNS record so -1
 		else:
 			features[8] = 0#unkown time
 			features[23] = 0#unkown time
