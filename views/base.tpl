@@ -3,8 +3,8 @@
     <head>
         <title>钓鱼网站智能检测系统</title>
 	<meta charset="utf-8">
-	<meta name="keywords" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失">
-	<meta name="description" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失">
+	<meta name="keywords" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失 查询 防范 预防">
+	<meta name="description" content="钓鱼网站 恶意网站 在线 智能 BP神经网络 样本 维度 特征 自学习 训练 检测 系统 隐私 经济 损失 查询 防范 预防">
 	<meta name="sogou_site_verification" content="dX1UeTN9kJ"/>
 	<meta name="baidu-site-verification" content="L0fZ4GXq6Z" />
 	<meta name="baidu-site-verification" content="RKSsa9hjY0" />
@@ -16,6 +16,15 @@
         <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <script src="/static/js/jquery.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?be5de418ded240dd598db337c126f35c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
     </head>
     <body>
 	<!-- Fixed navbar -->
@@ -36,12 +45,11 @@
 				<div class="col-lg-12">
 					<p><br><br></p><p><br><br></p>
 				        {{!base}}
-				<script type="text/javascript">
-    /*20:6 创建于 2018/2/7*/
-    var cpro_id = "u3203659";
-</script>
-<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/cm.js"></script>
-
+					 <script type="text/javascript">
+    					/*20:6 创建于 2018/2/7*/
+					    var cpro_id = "u3203659";
+					</script>
+					<script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/cm.js"></script>
 				</div>
 				</div>
 			</div>	
